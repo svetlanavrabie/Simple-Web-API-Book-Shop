@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\MesCours\\Net.Core\\DemoBookAPI\\DemoBookAPI\\DemoBookAPI.csproj": {}
+    "G:\\MesCours\\Net.Core\\GitRepository\\Simple-Web-API-Book-Shop\\DemoBookAPI\\DemoBookAPI.csproj": {}
   },
   "projects": {
-    "G:\\MesCours\\Net.Core\\DemoBookAPI\\DemoBookAPI\\DemoBookAPI.csproj": {
+    "G:\\MesCours\\Net.Core\\GitRepository\\Simple-Web-API-Book-Shop\\DemoBookAPI\\DemoBookAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\MesCours\\Net.Core\\DemoBookAPI\\DemoBookAPI\\DemoBookAPI.csproj",
+        "projectUniqueName": "G:\\MesCours\\Net.Core\\GitRepository\\Simple-Web-API-Book-Shop\\DemoBookAPI\\DemoBookAPI.csproj",
         "projectName": "DemoBookAPI",
-        "projectPath": "G:\\MesCours\\Net.Core\\DemoBookAPI\\DemoBookAPI\\DemoBookAPI.csproj",
+        "projectPath": "G:\\MesCours\\Net.Core\\GitRepository\\Simple-Web-API-Book-Shop\\DemoBookAPI\\DemoBookAPI.csproj",
         "packagesPath": "C:\\Users\\laurash\\.nuget\\packages\\",
-        "outputPath": "G:\\MesCours\\Net.Core\\DemoBookAPI\\DemoBookAPI\\obj\\",
+        "outputPath": "G:\\MesCours\\Net.Core\\GitRepository\\Simple-Web-API-Book-Shop\\DemoBookAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -46,9 +46,9 @@ namespace DemoBookAPI
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
-
+            // we need to add once the data in database to with DbSeddingClass.
             //context.SeedDataContext();
-           // app.UseMvc();
+            // app.UseMvc();
         }
     }
 }
