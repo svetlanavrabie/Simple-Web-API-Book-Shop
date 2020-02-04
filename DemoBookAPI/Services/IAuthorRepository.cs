@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DemoBookAPI.Services
 {
-    interface IAuthorRepository
+     public interface IAuthorRepository
     {
         ICollection<Author> GetAuthors();
 

@@ -14,9 +14,11 @@ namespace DemoBookAPI.Controllers
     public class CountriesController : Controller
     {
         private ICountryRepository _countryRepository;
-        public CountriesController(ICountryRepository countryRepository)
+        private IAuthorRepository _authorRepository;
+        public CountriesController(ICountryRepository countryRepository, IAuthorRepository authorRepository)
         {
             _countryRepository = countryRepository;
+            _authorRepository = authorRepository;
         }
 
 
@@ -82,6 +84,11 @@ namespace DemoBookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(CountryDto))]
         public IActionResult GetCountryOfAnAuthor(int authorId)
         {
+            if (!_authorRepository.AuthorExists(authorId))
+            {
+                return NotFound();
+            }
+
             var country = _countryRepository.GetCountryofAnAuthor(authorId);
             if (!ModelState.IsValid)
             {

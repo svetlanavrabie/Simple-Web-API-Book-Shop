@@ -14,9 +14,11 @@ namespace DemoBookAPI.Controllers
     public class CategoriesController : Controller
     {
         private ICategoryRepository _categoryRepository;
-        public CategoriesController(ICategoryRepository categoryRepository)
+        private IBookRepository _bookRepository;
+        public CategoriesController(ICategoryRepository categoryRepository, IBookRepository bookRepository)
         {
             _categoryRepository = categoryRepository;
+            _bookRepository = bookRepository;
         }
 
 
@@ -83,7 +85,10 @@ namespace DemoBookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<CategoryDto>))]
         public IActionResult GetAllCategoriesForABook(int bookId)
         {
-            //to do - if the book exists
+            if (!_bookRepository.BookExists(bookId))
+            {
+                return NotFound();
+            }
 
             var categories = _categoryRepository.GetAllCategoriesForABook(bookId);
             if (!ModelState.IsValid)

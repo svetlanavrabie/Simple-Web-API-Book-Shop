@@ -170,3 +170,4 @@ G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\obj\Debu
 G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\obj\Debug\netcoreapp3.1\DemoBookAPI.csproj.CopyComplete
 G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\obj\Debug\netcoreapp3.1\DemoBookAPI.dll
 G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\obj\Debug\netcoreapp3.1\DemoBookAPI.pdb
+G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\obj\Debug\netcoreapp3.1\DemoBookAPI.csprojAssemblyReference.cache
