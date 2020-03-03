@@ -14,11 +14,11 @@ namespace DemoBookAPI.Controllers
     public class CountriesController : Controller
     {
         private ICountryRepository _countryRepository;
-        private IAuthorRepository _authorRepository;
-        public CountriesController(ICountryRepository countryRepository, IAuthorRepository authorRepository)
+        //private IAuthorRepository _authorRepository;
+        public CountriesController(ICountryRepository countryRepository)
         {
             _countryRepository = countryRepository;
-            _authorRepository = authorRepository;
+           // _authorRepository = authorRepository;
         }
 
 
@@ -77,34 +77,34 @@ namespace DemoBookAPI.Controllers
             return Ok(countriyDto);
         }
 
-        //api/countries/authors/authorId
-        [HttpGet("authors/{authorId}")]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(200, Type = typeof(CountryDto))]
-        public IActionResult GetCountryOfAnAuthor(int authorId)
-        {
-            if (!_authorRepository.AuthorExists(authorId))
-            {
-                return NotFound();
-            }
+        ////api/countries/authors/authorId
+        //[HttpGet("authors/{authorId}")]
+        //[ProducesResponseType(400)]
+        //[ProducesResponseType(404)]
+        //[ProducesResponseType(200, Type = typeof(CountryDto))]
+        //public IActionResult GetCountryOfAnAuthor(int authorId)
+        //{
+        //    if (!_authorRepository.AuthorExists(authorId))
+        //    {
+        //        return NotFound();
+        //    }
 
-            var country = _countryRepository.GetCountryofAnAuthor(authorId);
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    var country = _countryRepository.GetCountryofAnAuthor(authorId);
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var countryDto = new CountryDto()
-            {
-                Id = country.Id,
-                Name = country.Name
-            };
+        //    var countryDto = new CountryDto()
+        //    {
+        //        Id = country.Id,
+        //        Name = country.Name
+        //    };
 
 
-            return Ok(countryDto);
+        //    return Ok(countryDto);
 
-        }
+        //}
 
         //api/countries/countryId/authors
 
