@@ -7,92 +7,98 @@ namespace DemoBookAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReviewersController : ControllerBase
+    public class ReviewsController : Controller
     {
+
         private IReviewerRepository _reviewerRepository;
+
         private IReviewRepository _reviewRepository;
-        public ReviewersController(IReviewerRepository reviewerRepository, IReviewRepository reviewRepository)
+
+        private IBookRepository _bookRepository;
+
+        public ReviewsController(IReviewerRepository reviewerRepository, IReviewRepository reviewRepository, IBookRepository bookRepository)
         {
             _reviewerRepository = reviewerRepository;
+
             _reviewRepository = reviewRepository;
 
+            _bookRepository = bookRepository;
         }
 
-        //api/reviewers
+        //api/reviews
 
         [HttpGet]
         [ProducesResponseType(400)]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<ReviewerDto>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ReviewDto>))]
         public IActionResult GetReviewers()
         {
-            var reviewers = _reviewerRepository.GetReviewers();
+            var reviews = _reviewRepository.GetReviews();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var reviewersDto = new List<ReviewerDto>();
+            var reviewsDto = new List<ReviewDto>();
 
-            foreach (var reviewer in reviewers)
+            foreach (var review in reviews)
             {
-                reviewersDto.Add(new ReviewerDto
+                reviewsDto.Add(new ReviewDto
                 {
-                    Id = reviewer.Id,
-                    FirstName = reviewer.FirstName,
-                    LastName = reviewer.LastName
+                    Id = review.Id,
+                    Headline = review.Headline,
+                    ReviewText = review.ReviewText,
+                    Rating = review.Rating
 
                 });
 
             }
-            return Ok(reviewersDto);
+            return Ok(reviewsDto);
         }
 
-        //api/reviewers/reviewerId
-        [HttpGet("{reviewerId}")]
+        //api/reviews/reviewId
+        [HttpGet("{reviewId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        [ProducesResponseType(200, Type = typeof(ReviewerDto))]
-        public IActionResult GetReviewer(int reviewerId)
+        [ProducesResponseType(200, Type = typeof(ReviewDto))]
+        public IActionResult GetReview(int reviewId)
         {
-            if (!_reviewerRepository.ReviewerExists(reviewerId))
+            if (!_reviewRepository.ReviewExists(reviewId))
             {
                 return NotFound();
             }
 
-            var reviewer = _reviewerRepository.GetReviewer(reviewerId);
+            var review = _reviewRepository.GetReview(reviewId);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var reviewerDto = new ReviewerDto()
+            var reviewDto = new ReviewDto()
             {
-                Id = reviewer.Id,
-                FirstName = reviewer.FirstName,
-                LastName = reviewer.LastName
+                Id = review.Id,
+                Headline = review.Headline,
+                ReviewText = review.ReviewText,
+                Rating = review.Rating
             };
 
-
-            return Ok(reviewerDto);
+            return Ok(reviewDto);
         }
 
 
-
-
-        //api/reviewers/reviewerId/reviews
-        [HttpGet("{reviewerId}/reviews")]
+        //api/reviewers/books/bookId
+        [HttpGet("books/{bookId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ReviewDto>))]
-        public IActionResult GetReviewsByReviewer(int reviewerId)
+        public IActionResult GetReviewsForABook(int bookId)
         {
-            if (!_reviewerRepository.ReviewerExists(reviewerId))
+
+            if (!_bookRepository.BookExists(bookId))
             {
                 return NotFound();
             }
 
-
-            var reviews = _reviewerRepository.GetReviewsByReviewer(reviewerId);
+            var reviews = _reviewRepository.GetReviewsOfABook(bookId);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -115,33 +121,34 @@ namespace DemoBookAPI.Controllers
             return Ok(reviewsDto);
         }
 
-        //api/reviewers/reviewId/reviewer
-        [HttpGet("{reviewId}/reviewer")]
+        //api/reviews/reviewId/book
+        [HttpGet("{reviewId}/book")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        [ProducesResponseType(200, Type = typeof(ReviewerDto))]
-        public IActionResult GetReviewerByOfAReview(int reviewId)
+        [ProducesResponseType(200, Type = typeof(BookDto))]
+        public IActionResult GetBookOfAReview(int reviewId)
         {
             if (!_reviewRepository.ReviewExists(reviewId))
             {
                 return NotFound();
             }
 
-            var reviewer = _reviewerRepository.GetReviewerOfAReview(reviewId);
+            var book = _reviewRepository.GetBookOfAReview(reviewId);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var reviewerDto = new ReviewerDto()
+            var bookDto = new BookDto()
             {
-                Id = reviewer.Id,
-                FirstName = reviewer.FirstName,
-                LastName = reviewer.LastName
+                Id = book.Id,
+                Title = book.Title,
+                Isbn = book.Isbn,
+                DatePublished=book.DatePublished
             };
 
 
-            return Ok(reviewerDto);
+            return Ok(bookDto);
         }
     }
 }

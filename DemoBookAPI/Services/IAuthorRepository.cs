@@ -13,7 +13,7 @@ namespace DemoBookAPI.Services
 
         ICollection<Author> GetAuthorsOfABook(int bookId);
 
-        ICollection<Book> GetBooksByAuthor(int bookId);
+        ICollection<Book> GetBooksByAuthor(int authorId);
 
         bool AuthorExists(int authorId);
     }
