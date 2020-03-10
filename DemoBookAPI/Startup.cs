@@ -30,11 +30,16 @@ namespace DemoBookAPI
             var connectionString = Configuration["connectionStrings:bookDbConnectionString"];
             services.AddDbContext<BookDbContext>(c => c.UseSqlServer(connectionString));
             services.AddScoped<ICountryRepository, CountryRepository>();
+<<<<<<< HEAD
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IReviewerRepository, ReviewerRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
 
+=======
+            //services.AddScoped<ICategoryRepository, CategoryRepository>();
+            //services.AddScoped<IReviewerRepository, ReviewerRepository>();
+>>>>>>> 362adaa4def6e9dab2106ec7a92ff2774a12ac3f
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
