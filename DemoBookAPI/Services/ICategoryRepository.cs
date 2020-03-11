@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DemoBookAPI.Services
 {
@@ -17,6 +14,6 @@ namespace DemoBookAPI.Services
 
         bool CategoryExists(int categoryId);
 
-
+        bool IsDublicateCategoryName(int categoryId, string categoryName);
     }
 }

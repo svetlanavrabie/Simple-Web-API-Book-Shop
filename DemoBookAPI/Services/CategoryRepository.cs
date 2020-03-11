@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DemoBookAPI.Services
 {
@@ -26,7 +25,7 @@ namespace DemoBookAPI.Services
 
         public ICollection<Category> GetCategories()
         {
-            var categories = _categoryContext.Categories.OrderBy(c=>c.Name).ToList();
+            var categories = _categoryContext.Categories.OrderBy(c => c.Name).ToList();
             return categories;
         }
 
@@ -37,7 +36,14 @@ namespace DemoBookAPI.Services
 
         public Category GetCategory(int categoryId)
         {
-            return _categoryContext.Categories.Where(c => c.Id== categoryId).FirstOrDefault();
+            return _categoryContext.Categories.Where(c => c.Id == categoryId).FirstOrDefault();
+        }
+
+        public bool IsDublicateCategoryName(int categoryId, string categoryName)
+        {
+            var category = _categoryContext.Categories.Where(c => c.Name.Trim().ToUpper() == categoryName.Trim().ToUpper() && c.Id != categoryId).FirstOrDefault();
+
+            return category == null ? false : true;
         }
     }
 }

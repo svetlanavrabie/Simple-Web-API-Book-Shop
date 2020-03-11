@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DemoBookAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,20 +21,24 @@ namespace DemoBookAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddMvc();
+
             var connectionString = Configuration["connectionStrings:bookDbConnectionString"];
+
             services.AddDbContext<BookDbContext>(c => c.UseSqlServer(connectionString));
+
             services.AddScoped<ICountryRepository, CountryRepository>();
-<<<<<<< HEAD
+
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
             services.AddScoped<IReviewerRepository, ReviewerRepository>();
+
             services.AddScoped<IReviewRepository, ReviewRepository>();
+
             services.AddScoped<IAuthorRepository, AuthorRepository>();
 
-=======
-            //services.AddScoped<ICategoryRepository, CategoryRepository>();
-            //services.AddScoped<IReviewerRepository, ReviewerRepository>();
->>>>>>> 362adaa4def6e9dab2106ec7a92ff2774a12ac3f
+            services.AddScoped<IBookRepository, BookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,10 +59,7 @@ namespace DemoBookAPI
             {
                 endpoints.MapControllers();
             });
-            // we need to add once the data in database  with DbSeddingClass.
-            // All code to send the data to database will be into DbSeddingClass.
-            //context.SeedDataContext();
-            // app.UseMvc();
+        
         }
     }
 }

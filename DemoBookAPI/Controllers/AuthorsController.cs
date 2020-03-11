@@ -17,7 +17,7 @@ namespace DemoBookAPI.Controllers
         {
             _authorRepository = authorRepository;
             _bookRepository = bookRepository;
-    }
+        }
 
         //api/authors
 

@@ -38,5 +38,12 @@ namespace DemoBookAPI.Services
         {
             return _countryContext.Countries.Any(c => c.Id == countryId);
         }
+
+        public bool IsDublicateCountryName(int countryId, string countryName)
+        {
+            var country = _countryContext.Countries.Where(c => c.Name.Trim().ToUpper() == countryName.Trim().ToUpper() && c.Id != countryId).FirstOrDefault();
+
+            return country == null ? false : true;
+        }
     }
 }
