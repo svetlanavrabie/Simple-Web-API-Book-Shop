@@ -45,5 +45,29 @@ namespace DemoBookAPI.Services
 
             return country == null ? false : true;
         }
+
+        public bool CreateCountry(Country country)
+        {
+            _countryContext.Add(country);
+            return Save();
+        }
+
+        public bool UpdateCountry(Country country)
+        {
+            _countryContext.Update(country);
+            return Save();
+        }
+
+        public bool DeleteCountry(Country country)
+        {
+            _countryContext.Remove(country);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _countryContext.SaveChanges();
+            return saved >= 0 ? true : false;
+        }
     }
 }
