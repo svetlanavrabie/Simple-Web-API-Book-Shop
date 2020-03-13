@@ -228,7 +228,6 @@ namespace DemoBookAPI.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(409)]
-        [ProducesResponseType(422)]
         [ProducesResponseType(500)]
         public IActionResult DeleteCountry(int countryId)
         {
