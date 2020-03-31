@@ -25,6 +25,12 @@ namespace DemoBookAPI.Services
             return Save();
         }
 
+        public bool DeleteReviews(List<Review> reviews)
+        {
+            _reviewContext.RemoveRange(reviews);
+            return Save();
+        }
+
         public Book GetBookOfAReview(int reviewId)
         {
             var bookId = _reviewContext.Reviews.Where(r => r.Id == reviewId).Select(b => b.Book.Id).FirstOrDefault();

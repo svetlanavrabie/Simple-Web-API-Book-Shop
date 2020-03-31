@@ -23,6 +23,8 @@ namespace DemoBookAPI.Services
 
         bool DeleteReview(Review review);
 
+        bool DeleteReviews(List<Review> reviews);
+
         bool Save();
 
     }

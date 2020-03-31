@@ -296,4 +296,3 @@ G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\bin\Debu
 G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\obj\Debug\netcoreapp3.1\DemoBookAPI.MvcApplicationPartsAssemblyInfo.cache
-G:\MesCours\Net.Core\GitRepository\Simple-Web-API-Book-Shop\DemoBookAPI\obj\Debug\netcoreapp3.1\DemoBookAPI.csprojAssemblyReference.cache
