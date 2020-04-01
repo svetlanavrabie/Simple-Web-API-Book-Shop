@@ -1,11 +1,8 @@
-﻿using System;
+﻿using DemoBookAPI.Dtos;
+using DemoBookAPI.Services;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using DemoBookAPI.Dtos;
-using DemoBookAPI.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DemoBookAPI.Controllers
 {
@@ -25,7 +22,7 @@ namespace DemoBookAPI.Controllers
         //api/countries/
         [HttpGet]
         [ProducesResponseType(400)]
-        [ProducesResponseType(200, Type=typeof(IEnumerable<CountryDto>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<CountryDto>))]
         public IActionResult GetCountries()
         {
             var countries = _countryRepository.GetCountries().ToList();
@@ -33,7 +30,7 @@ namespace DemoBookAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            
+
             var countriesDto = new List<CountryDto>();
 
             foreach (var country in countries)
@@ -41,9 +38,9 @@ namespace DemoBookAPI.Controllers
                 countriesDto.Add(new CountryDto
                 {
                     Id = country.Id,
-                    Name= country.Name
-                }); 
-                
+                    Name = country.Name
+                });
+
             }
             return Ok(countriesDto);
         }
@@ -73,7 +70,7 @@ namespace DemoBookAPI.Controllers
                 Name = country.Name
             };
 
-          
+
             return Ok(countriyDto);
         }
 
@@ -114,7 +111,7 @@ namespace DemoBookAPI.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<AuthorDto>))]
         public IActionResult GetAuthorsFromACounty(int countryId)
         {
-            if(!_countryRepository.CountryExists(countryId))
+            if (!_countryRepository.CountryExists(countryId))
             {
                 return NotFound();
             }
@@ -133,9 +130,9 @@ namespace DemoBookAPI.Controllers
                 authorsDto.Add(new AuthorDto
                 {
                     Id = author.Id,
-                    FirstName=author.FirstName,
-                    LastName=author.LastName
-                }) ;
+                    FirstName = author.FirstName,
+                    LastName = author.LastName
+                });
 
             }
 
@@ -150,7 +147,7 @@ namespace DemoBookAPI.Controllers
         [ProducesResponseType(500)]
         public IActionResult CreateCountry([FromBody] Country countryToCreate)
         {
-            if (countryToCreate==null)
+            if (countryToCreate == null)
             {
                 return BadRequest(ModelState);
             }
@@ -158,7 +155,7 @@ namespace DemoBookAPI.Controllers
             var country = _countryRepository.GetCountries().
                 Where(c => c.Name.Trim().ToUpper() == countryToCreate.Name.Trim().ToUpper()).FirstOrDefault();
 
-            if (country!=null)
+            if (country != null)
             {
                 ModelState.AddModelError("", $"Country {countryToCreate.Name} is already exists");
                 return StatusCode(422, ModelState);
@@ -192,7 +189,7 @@ namespace DemoBookAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (countryId!= countryToUpdate.Id)
+            if (countryId != countryToUpdate.Id)
             {
                 return BadRequest(ModelState);
             }
@@ -231,7 +228,7 @@ namespace DemoBookAPI.Controllers
         [ProducesResponseType(500)]
         public IActionResult DeleteCountry(int countryId)
         {
-           
+
             if (!_countryRepository.CountryExists(countryId))
             {
                 return NotFound();
@@ -239,7 +236,7 @@ namespace DemoBookAPI.Controllers
 
             var countryToDelete = _countryRepository.GetCountry(countryId);
 
-            if (_countryRepository.GetAuthorsFromACountry(countryId).Count()>0)
+            if (_countryRepository.GetAuthorsFromACountry(countryId).Count() > 0)
             {
 
                 ModelState.AddModelError("", $"Country {countryToDelete.Name} cannot be deleted because it is used by at least one author");
