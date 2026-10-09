@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,15 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 	options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Book Shop API",
+        Version = "v1",
+        Description = "Simple Web API for a book shop, built with ASP.NET Core on .NET 10."
+    });
+});
 
 var connectionString = builder.Configuration["connectionStrings:bookDbConnectionString"];
 builder.Services.AddDbContext<BookDbContext>(c => c.UseSqlServer(connectionString));
