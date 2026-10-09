@@ -10,7 +10,6 @@ namespace DemoBookAPI
     {
         public BookDbContext(DbContextOptions<BookDbContext> options) : base(options)
         {
-            Database.Migrate();
         }
 
         public virtual DbSet<Book> Books { get; set; }

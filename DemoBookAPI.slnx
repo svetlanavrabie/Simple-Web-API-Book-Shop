@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="DemoBookAPI.Integration.Tests/DemoBookAPI.Integration.Tests.csproj" />
+  <Project Path="DemoBookAPI.Tests/DemoBookAPI.Tests.csproj" />
   <Project Path="DemoBookAPI/DemoBookAPI.csproj" />
 </Solution>

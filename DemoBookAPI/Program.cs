@@ -39,6 +39,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
 	var context = scope.ServiceProvider.GetRequiredService<BookDbContext>();
+	if (context.Database.IsRelational())
+	{
+		context.Database.Migrate();
+	}
 	if (!context.BookAuthors.Any())
 	{
 		context.SeedDataContext();
@@ -60,3 +64,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
